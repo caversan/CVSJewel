@@ -1,4 +1,4 @@
-CVSJewel ver:0.01b
+CVSJewel ver: 0.01b
 
 Author: Adriano Caversan
 E-mail: adriano.caversan@gmail.com
