@@ -1,4 +1,3 @@
-/*
 CVSJewel ver:0.01b
 
 Author: Adriano Caversan
@@ -11,5 +10,3 @@ Description: Simple match 3 game made with Unity3D for study and portifolio purp
 
 3rd party assets:
 -Gems: "2D FREE Crystal Set" by diluck from Unity Asset Store "thank you for this great assets" (https://assetstore.unity.com/packages/2d/textures-materials/2d-free-crystal-set-175156)
-
-*/
