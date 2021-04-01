@@ -11,6 +11,10 @@ Description: Simple match 3 game made with Unity3D for study and portifolio purp
 
 3rd party assets:
 -Gems: "2D FREE Crystal Set" by diluck from Unity Asset Store "thank you for this great assets" (https://assetstore.unity.com/packages/2d/textures-materials/2d-free-crystal-set-175156)
+-Background: "Futuristic technological wallpaper Free Vector" by @coolvector (https://www.freepik.com/vectors/background)
+
+
+***More info about the 3rd party license can be found in /Assets/3rdParty folder.
 
 */
 
@@ -27,14 +31,17 @@ public class MainScript : MonoBehaviour
 {
     
 
-    //column size, row size, col length, row lenght, crystal identifier;
-    public int colW,rowH,colLen,rowLen,crystalId;
-
-    //List for loading the possible crystals prefabs
-    public List<GameObject> Crystals = new List<GameObject>();
+    //column size, row size, col length, row lenght, crystal identifier, background cell indentfier;
+    public int colW,rowH,colLen,rowLen,crystalId,cellId;
 
     //Cell prefab loader
     public List<GameObject> Cells = new List<GameObject>();
+    
+    
+    //List for loading the possible crystals prefabs
+    public List<GameObject> Crystals = new List<GameObject>();
+
+
 
     //List for populate the canvas with the crystals grid
     public GameObject [,] CrystalsList;
@@ -48,7 +55,8 @@ public class MainScript : MonoBehaviour
 
         while(!done)
         {
-                objToLoad = Resources.Load(folder + counter) as GameObject;
+                objToLoad = Resources.Load(folder + counter) as GameObject;               
+
                 if(objToLoad == null)
                 {
                     done = true;
@@ -71,13 +79,17 @@ public class MainScript : MonoBehaviour
         colLen=8;
         //number of rows
         rowLen=8;
+        //declarate an initial background cell
+        cellId=0;
         //Determining the grid size
         CrystalsList = new GameObject[colLen,rowLen];
-        
+
+
+        //Prefab loader, load all cells prefabs from the Prefab/Crystals folder
+        prefabLoader ("Prefabs/UI/Cells" , Cells);       
         //Prefab loader, load all crystals prefabs from the Prefab/Crystals folder
         prefabLoader ("Prefabs/Crystals", Crystals);
-        //Prefab loader, load all cells prefabs from the Prefab/Crystals folder
-        prefabLoader ("Prefabs/UI/Cells" , Cells);
+
       
         
         //This 'for' bellow instantiate the crystals in the canvas preventing a repetitive crystals sequence in the first turn.
@@ -88,11 +100,23 @@ public class MainScript : MonoBehaviour
             //There increment columns
             for(int j = 0; j<rowLen ; j++)
             {
+                if(cellId==0){
+                    Instantiate(Cells[cellId], new Vector3(colW*j,rowH*i,1), Quaternion.identity);  
+                    if(j<rowLen-1){
+                        cellId++;
+                    }
+                }else{
+                    Instantiate(Cells[cellId], new Vector3(colW*j,rowH*i,1), Quaternion.identity);  
+                    if(j<rowLen-1){
+                        cellId=0;
+                    }
+                }
+
                 //This is a cristalId, this number will be cached for comparsion reasons.
                 crystalId=Random.Range(0, 5);
 
                 //The crystal is loaded and positioned in the canvas using a temporary crystalId
-                CrystalsList[i,j]=(GameObject)Instantiate(Crystals[crystalId], new Vector2(colW*j,rowH*i), Quaternion.identity);
+                CrystalsList[i,j]=(GameObject)Instantiate(Crystals[crystalId], new Vector3(colW*j,rowH*i,0), Quaternion.identity);
                 
                 if(j>1){
                     //After the second iteration I start to test the two left neighbour cristals, never before this iteration because we whould get an 'Out of Bounds Error' in Array.
@@ -100,7 +124,8 @@ public class MainScript : MonoBehaviour
                         //If the gameobjects have the same name the gameoobject will be destroyed, the crystalId will be changed and a new crystal will be loaded.
                         Destroy(CrystalsList[i,j]);
                         crystalId = (crystalId==0 ? crystalId=Crystals.Count-1 : crystalId-1);                        
-                        CrystalsList[i,j]=(GameObject)Instantiate(Crystals[crystalId], new Vector2(colW*j,rowH*i), Quaternion.identity);
+                        CrystalsList[i,j]=(GameObject)Instantiate(Crystals[crystalId], new Vector3(colW*j,rowH*i,0), Quaternion.identity);
+    
                     }
                 }
                 //Now, after the second line interation we need find the repeated crystals vertically
@@ -109,9 +134,11 @@ public class MainScript : MonoBehaviour
                         Destroy(CrystalsList[i,j]);
                         //No chance to sort a same crystal that was destroyed before because I walk in the list step by step from the end to the beginning. Certally, in this case, the destroyed crystal had another index.
                         crystalId = (crystalId==0 ? crystalId=Crystals.Count-1 : crystalId-1);                        
-                        CrystalsList[i,j]=(GameObject)Instantiate(Crystals[crystalId], new Vector2(colW*j,rowH*i), Quaternion.identity);
+                        CrystalsList[i,j]=(GameObject)Instantiate(Crystals[crystalId], new Vector3(colW*j,rowH*i,0), Quaternion.identity);
+    
                     }
                 }
+
             }
         }
     }

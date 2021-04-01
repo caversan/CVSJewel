@@ -10,3 +10,6 @@ Description: Simple match 3 game made with Unity3D for study and portifolio purp
 
 3rd party assets:
 -Gems: "2D FREE Crystal Set" by diluck from Unity Asset Store "thank you for this great assets" (https://assetstore.unity.com/packages/2d/textures-materials/2d-free-crystal-set-175156)
+-Background: "Futuristic technological wallpaper" by @coolvector (https://www.freepik.com/free-vector/futuristic-technological-wallpaper_10987658.htm)
+
+***More info about the 3rd party license can be found in /Assets/3rdParty folder.

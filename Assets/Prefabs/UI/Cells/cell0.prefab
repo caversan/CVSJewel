@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7362587184434701199}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cell0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8909653880180525081}
   - component: {fileID: 6229359354013885986}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 79e6f817618fa4e428379aeeeee107f2, type: 3}
-  m_Color: {r: 0.1509434, g: 0.12317551, b: 0.12317551, a: 0.74509805}
+  m_Color: {r: 0.16104485, g: 0.27439055, b: 0.7264151, a: 0.5882353}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
