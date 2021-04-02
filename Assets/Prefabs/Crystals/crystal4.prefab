@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 3852028404342891214}
   - component: {fileID: -3623503661545649916}
   - component: {fileID: -9043892733698614952}
+  - component: {fileID: 5305039118299249051}
   m_Layer: 0
   m_Name: crystal4
   m_TagString: Untagged
@@ -160,5 +161,17 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6, y: 5.625}
+  m_Size: {x: 5, y: 5.625}
   m_EdgeRadius: 0
+--- !u!114 &5305039118299249051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8067869169825515042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cfd60651da6be745a1dfd9793abc249, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

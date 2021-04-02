@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\MainScript.cs" />
+     <Compile Include="Assets\Scripts\CrystalBehaviour.cs" />
      <None Include="Assets\3rdParty\futuristic-technological-wallpaper\License premium.txt" />
      <None Include="Assets\3rdParty\futuristic-technological-wallpaper\License free.txt" />
      <None Include="Assets\3rdParty\futuristic-technological-wallpaper\Fonts.txt" />
