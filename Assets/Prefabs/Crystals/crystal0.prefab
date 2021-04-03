@@ -175,3 +175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cfd60651da6be745a1dfd9793abc249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  touchinputmask:
+    serializedVersion: 2
+    m_Bits: 0
+  objects: []
+  ImportedMainScript: {fileID: 0}

@@ -28,10 +28,10 @@ using UnityEngine;
 
 public class MainScript : MonoBehaviour
 {
-    
+    //public static MainScript instance;
 
     //column size, row size, col length, row lenght, crystal identifier, background cell indentfier, distance of crystal fall;
-    public int colW,rowH,colLen,rowLen,crystalId,cellId,distanceY;
+    public int colW,rowH,rowLen,colLen,crystalId,cellId,distanceY;
 
     //Cell prefab loader
     public List<GameObject> Cells = new List<GameObject>();
@@ -76,14 +76,14 @@ public class MainScript : MonoBehaviour
         colW=1;
         //cell height
         rowH=1;
-        //number of columns
-        colLen=8;
         //number of rows
         rowLen=8;
+        //number of columns
+        colLen=8;
         //declarate an initial background cell
         cellId=0;
         //Determining the grid size
-        CrystalsList = new GameObject[colLen,rowLen];
+        CrystalsList = new GameObject[rowLen,colLen];
 
 
         //Prefab loader, load all cells prefabs from the Prefab/Crystals folder
@@ -94,19 +94,22 @@ public class MainScript : MonoBehaviour
         //This 'for' bellow instantiate the background cells and the crystals in the canvas preventing a repetitive crystals sequence in the first turn.
         
         //There we increment lines
-        for (int i=0; i<colLen; i++)
+        for (int i=0; i<rowLen; i++)
         {
             //There increment columns
-            for(int j = 0; j<rowLen ; j++)
+            for(int j = 0; j<colLen ; j++)
             {
-                if(cellId==0){
+                if(cellId==0)
+                {
                     Instantiate(Cells[cellId], new Vector3(colW*j,rowH*i,1), Quaternion.identity);  
-                    if(j<rowLen-1){
+                    if(j<colLen-1)
+                    {
                         cellId++;
                     }
                 }else{
                     Instantiate(Cells[cellId], new Vector3(colW*j,rowH*i,1), Quaternion.identity);  
-                    if(j<rowLen-1){
+                    if(j<colLen-1)
+                    {
                         cellId=0;
                     }
                 }
@@ -117,7 +120,8 @@ public class MainScript : MonoBehaviour
                 //The crystal is loaded and positioned in the canvas using a temporary crystalId
                 CrystalsList[i,j]=(GameObject)Instantiate(Crystals[crystalId], new Vector3(colW*j,rowH*i+distanceY,0), Quaternion.identity);
                 
-                if(j>1){
+                if(j>1)
+                {
                     //After the second iteration starts a test if exists two left crystals with a same name, never before this iteration because we whould get an 'Out of Bounds Error' in Array.
                     if(CrystalsList[i,j].name==CrystalsList[i,j-1].name&&CrystalsList[i,j].name==CrystalsList[i,j-2].name){
                         //If the gameobjects have the same name the gameoobject will be destroyed, the crystalId will be changed and a new crystal will be loaded.
@@ -128,7 +132,8 @@ public class MainScript : MonoBehaviour
                     }
                 }
                 //Now, after the second line interation, we need find the repeated crystals vertically
-                if(i>1){
+                if(i>1)
+                {
                     if(CrystalsList[i,j].name==CrystalsList[i-1,j].name&&CrystalsList[i,j].name==CrystalsList[i-2,j].name){
                         Destroy(CrystalsList[i,j]);
                         //No chance to sort a same crystal that was destroyed before because I walk in the list step by step from the end to the beginning. Certally, in this case, the destroyed crystal had another index.
